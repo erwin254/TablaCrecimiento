@@ -273,35 +273,59 @@ $("#enviar_datos").on("click", function () {
             if (tipo_grafico == "exe" && (meses >= 0 && meses <= 60)) {
                 tabla_base = dataPediatria["ninas-ExE-0a5"];
                 tabla_base.tabla.push([meses, null, null, null, null, null, null, null, null, null, parseFloat($("#estatura").val())]);
+                $.getJSON("json/ninas-ExE-0a5.json", function (obj) {
+                    dataPediatria["ninas-ExE-0a5"] = obj;
+                })
             }
             else if (tipo_grafico == "exe" && (meses > 60 && meses <= 228)) {
                 tabla_base = dataPediatria["ninas-ExE-5a19"];
                 tabla_base.tabla.push([meses, null, null, null, null, null, null, null, null, null, parseFloat($("#estatura").val())]);
+                $.getJSON("json/ninas-ExE-5a19.json", function (obj) {
+                    dataPediatria["ninas-ExE-5a19"] = obj;
+                })
             }
             else if (tipo_grafico == "imc" && (meses > 60 && meses <= 228)) {
                 tabla_base = dataPediatria["ninas-IMC-5a19"];
                 tabla_base.tabla.push([meses, null, null, null, null, null, null, null, null, null, parseFloat($("#imc").val())]);
+                $.getJSON("json/ninas-IMC-5a19.json", function (obj) {
+                    dataPediatria["ninas-IMC-5a19"] = obj;
+                })
             }
             else if (tipo_grafico == "pce" && (meses > 60 && meses <= 228)) {
                 tabla_base = dataPediatria["ninas-PC-E-5a19"];
                 tabla_base.tabla.push([meses, null, null, null, null, null, null]);
+                $.getJSON("json/ninas-PC-E-5a19.json", function (obj) {
+                    dataPediatria["ninas-PC-E-5a19"] = obj;
+                })
             }
             else if (tipo_grafico == "pxe" && (meses >= 0 && meses <= 60)) {
                 tabla_base = dataPediatria["ninas-PxE-0a5"];
                 tabla_base.tabla.push([meses, null, null, null, null, null, null, null, null, parseFloat($("#peso").val())]);
+                $.getJSON("json/ninas-PxE-0a5.json", function (obj) {
+                    dataPediatria["ninas-PxE-0a5"] = obj;
+                })
             }
             else if (tipo_grafico == "pxe2" && (meses > 24 && meses <= 60)) {
                 tabla_base = dataPediatria["ninas-PxE-2a5-65a120"];
                 tabla_base.tabla.push([meses, null, null, null, null, null, null, null, null, null]);
+                $.getJSON("json/ninas-PxE-2a5-65a120.json", function (obj) {
+                    dataPediatria["ninas-PxE-2a5-65a120"] = obj;
+                })
             }
             else if (tipo_grafico == "pxe" && (meses > 60 && meses <= 120)) {
                 tabla_base = dataPediatria["ninas-PxE-5a10"];
                 tabla_base.tabla.push([meses, null, null, null, null, null, null, null, null, parseFloat($("#peso").val())]);
+                $.getJSON("json/ninas-PxE-5a10.json", function (obj) {
+                    dataPediatria["ninas-PxE-5a10"] = obj;
+                })
 
             }
             else if (tipo_grafico == "pxl" && (meses >= 0 && meses <= 24)) {
                 tabla_base = dataPediatria["ninas-PxL-0a2-45a110"];
                 tabla_base.tabla.push([meses, null, null, null, null, null, null, null, null, null]);
+                $.getJSON("json/ninas-PxL-0a2-45a110.json", function (obj) {
+                    dataPediatria["ninas-PxL-0a2-45a110"] = obj;
+                })
             }
         }
         if (tabla_base.tabla !== undefined) {
