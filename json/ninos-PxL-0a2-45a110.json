@@ -1,4 +1,4 @@
-{"titulo" : "Peso por longitud en niños desde el nacimiento a 2 años de 45 cm a 110 cm (z-scores", "tabla":
+{"titulo" : "Peso por longitud en niños desde el nacimiento a 2 años de 45 cm a 110 cm (z-scores)", "tabla":
 [["longitud en centimetros","l","m","s","-2de","-1de","mediana","+1de","+2de", "Niño"],
 [45.0,-0.3521,2.4410,0.09182,2.0,2.2,2.4,2.7,3.0, null],
 [45.5,-0.3521,2.5244,0.09153,2.1,2.3,2.5,2.8,3.1, null],
