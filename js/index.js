@@ -139,13 +139,13 @@ function drawChart(dataTable, title, divDraw) {
 $("#peso").on("change", function () {
     estatura = parseInt($("#estatura").val());
     peso = parseInt($("#peso").val());
-    $("#IMC").val(funciones.calcularImc(peso, estatura));
+    $("#imc").val(funciones.calcularImc(peso, estatura));
 });
 
 $("#estatura").on("change", function () {
     estatura = parseInt($("#estatura").val());
     peso = parseInt($("#peso").val());
-    $("#IMC").val(funciones.calcularImc(peso, estatura));
+    $("#imc").val(funciones.calcularImc(peso, estatura));
 });
 
 
@@ -160,6 +160,7 @@ $("#fecha_nac").on("change", function () {
 
 $("#enviar_datos").on("click", function () {
 
+    
     if ($("#estatura").val() == '' || $("#peso").val() == '' || $("#fecha_nac").val() == '') {
         alert("faltan datos");
     }
@@ -171,6 +172,8 @@ $("#enviar_datos").on("click", function () {
         var idGrafico = "";
         var tabla_base = [];
 
+        console.log(sexo+" - "+tipo_grafico+" - "+meses);
+        
         if (sexo == "m") {
             if (tipo_grafico == "exe" && (meses >= 0 && meses <= 60)) {
                 tabla_base = dataPediatria["ninos-ExE-0a5"];
@@ -214,7 +217,7 @@ $("#enviar_datos").on("click", function () {
             }
             else if (tipo_grafico == "pce" && (meses > 60 && meses <= 228)) {
                 tabla_base = dataPediatria["ninos-PC-E-5a19"];
-                tabla_base.tabla.push([meses, null, null, null, null, null, null]);
+                tabla_base.tabla.push([parseInt(meses/12), null, null, null, null, null, parseFloat($("#pdc").val())]);
                 $.getJSON("json/ninos-PC-E-5a19.json", function (obj) {
                     dataPediatria["ninos-PC-E-5a19"] = obj;
                 })
@@ -231,14 +234,14 @@ $("#enviar_datos").on("click", function () {
                     dataPediatria["ninos-PxE-0a5"] = obj;
                 })
             }
-            else if (tipo_grafico == "pxe2" && (meses > 24 && meses <= 60)) {
+            else if (tipo_grafico == "pxe2") {
                 tabla_base = dataPediatria["ninos-PxE-2a5-65a120"];
                 tabla_base.tabla.forEach(element => {
                     element.splice(1, 1);
                     element.splice(1, 1);
                     element.splice(1, 1);
                 });
-                tabla_base.tabla.push([meses, null, null, null, null, null, null]);
+                tabla_base.tabla.push([parseFloat($("#estatura").val()), null, null, null, null, null, parseFloat($("#peso").val())]);
                 $.getJSON("json/ninos-PxE-2a5-65a120.json", function (obj) {
                     dataPediatria["ninos-PxE-2a5-65a120"] = obj;
                 })
@@ -263,7 +266,7 @@ $("#enviar_datos").on("click", function () {
                     element.splice(1, 1);
                     element.splice(1, 1);
                 });
-                tabla_base.tabla.push([meses, null, null, null, null, null, null]);
+                tabla_base.tabla.push([parseFloat($("#estatura").val()), null, null, null, null, null, parseFloat($("#peso").val())]);
                 $.getJSON("json/ninos-PxL-0a2-45a110.json", function (obj) {
                     dataPediatria["ninos-PxL-0a2-45a110"] = obj;
                 })
@@ -272,49 +275,83 @@ $("#enviar_datos").on("click", function () {
         else if (sexo == "f") {
             if (tipo_grafico == "exe" && (meses >= 0 && meses <= 60)) {
                 tabla_base = dataPediatria["ninas-ExE-0a5"];
-                tabla_base.tabla.push([meses, null, null, null, null, null, null, null, null, null, parseFloat($("#estatura").val())]);
+                tabla_base.tabla.forEach(element => {
+                    element.splice(1, 1);
+                    element.splice(1, 1);
+                    element.splice(1, 1);
+                    element.splice(1, 1);
+                });
+                tabla_base.tabla.push([meses, null, null, null, null, null, parseFloat($("#estatura").val())]);
                 $.getJSON("json/ninas-ExE-0a5.json", function (obj) {
                     dataPediatria["ninas-ExE-0a5"] = obj;
-                })
+                });
+
             }
             else if (tipo_grafico == "exe" && (meses > 60 && meses <= 228)) {
                 tabla_base = dataPediatria["ninas-ExE-5a19"];
-                tabla_base.tabla.push([meses, null, null, null, null, null, null, null, null, null, parseFloat($("#estatura").val())]);
+                tabla_base.tabla.forEach(element => {
+                    element.splice(1, 1);
+                    element.splice(1, 1);
+                    element.splice(1, 1);
+                    element.splice(1, 1);
+                });
+                tabla_base.tabla.push([meses, null, null, null, null, null, parseFloat($("#estatura").val())]);
                 $.getJSON("json/ninas-ExE-5a19.json", function (obj) {
                     dataPediatria["ninas-ExE-5a19"] = obj;
-                })
+                });
+
             }
             else if (tipo_grafico == "imc" && (meses > 60 && meses <= 228)) {
                 tabla_base = dataPediatria["ninas-IMC-5a19"];
-                tabla_base.tabla.push([meses, null, null, null, null, null, null, null, null, null, parseFloat($("#imc").val())]);
+                tabla_base.tabla.forEach(element => {
+                    element.splice(1, 1);
+                    element.splice(1, 1);
+                    element.splice(1, 1);
+                });
+                tabla_base.tabla.push([meses, null, null, null, null, null, null, parseFloat($("#imc").val())]);
                 $.getJSON("json/ninas-IMC-5a19.json", function (obj) {
                     dataPediatria["ninas-IMC-5a19"] = obj;
-                })
+                });
             }
             else if (tipo_grafico == "pce" && (meses > 60 && meses <= 228)) {
                 tabla_base = dataPediatria["ninas-PC-E-5a19"];
-                tabla_base.tabla.push([meses, null, null, null, null, null, null]);
+                tabla_base.tabla.push([parseInt(meses/12), null, null, null, null, null, parseFloat($("#pdc").val())]);
                 $.getJSON("json/ninas-PC-E-5a19.json", function (obj) {
                     dataPediatria["ninas-PC-E-5a19"] = obj;
                 })
             }
             else if (tipo_grafico == "pxe" && (meses >= 0 && meses <= 60)) {
                 tabla_base = dataPediatria["ninas-PxE-0a5"];
-                tabla_base.tabla.push([meses, null, null, null, null, null, null, null, null, parseFloat($("#peso").val())]);
+                tabla_base.tabla.forEach(element => {
+                    element.splice(1, 1);
+                    element.splice(1, 1);
+                    element.splice(1, 1);
+                });
+                tabla_base.tabla.push([meses, null, null, null, null, null, parseFloat($("#peso").val())]);
                 $.getJSON("json/ninas-PxE-0a5.json", function (obj) {
                     dataPediatria["ninas-PxE-0a5"] = obj;
                 })
             }
-            else if (tipo_grafico == "pxe2" && (meses > 24 && meses <= 60)) {
+            else if (tipo_grafico == "pxe2") {
                 tabla_base = dataPediatria["ninas-PxE-2a5-65a120"];
-                tabla_base.tabla.push([meses, null, null, null, null, null, null, null, null, null]);
+                tabla_base.tabla.forEach(element => {
+                    element.splice(1, 1);
+                    element.splice(1, 1);
+                    element.splice(1, 1);
+                });
+                tabla_base.tabla.push([parseFloat($("#estatura").val()), null, null, null, null, null, parseFloat($("#peso").val())]);
                 $.getJSON("json/ninas-PxE-2a5-65a120.json", function (obj) {
                     dataPediatria["ninas-PxE-2a5-65a120"] = obj;
                 })
             }
             else if (tipo_grafico == "pxe" && (meses > 60 && meses <= 120)) {
                 tabla_base = dataPediatria["ninas-PxE-5a10"];
-                tabla_base.tabla.push([meses, null, null, null, null, null, null, null, null, parseFloat($("#peso").val())]);
+                tabla_base.tabla.forEach(element => {
+                    element.splice(1, 1);
+                    element.splice(1, 1);
+                    element.splice(1, 1);
+                });
+                tabla_base.tabla.push([meses, null, null, null, null, null, parseFloat($("#peso").val())]);
                 $.getJSON("json/ninas-PxE-5a10.json", function (obj) {
                     dataPediatria["ninas-PxE-5a10"] = obj;
                 })
@@ -322,7 +359,12 @@ $("#enviar_datos").on("click", function () {
             }
             else if (tipo_grafico == "pxl" && (meses >= 0 && meses <= 24)) {
                 tabla_base = dataPediatria["ninas-PxL-0a2-45a110"];
-                tabla_base.tabla.push([meses, null, null, null, null, null, null, null, null, null]);
+                tabla_base.tabla.forEach(element => {
+                    element.splice(1, 1);
+                    element.splice(1, 1);
+                    element.splice(1, 1);
+                });
+                tabla_base.tabla.push([parseFloat($("#estatura").val()), null, null, null, null, null, parseFloat($("#peso").val())]);
                 $.getJSON("json/ninas-PxL-0a2-45a110.json", function (obj) {
                     dataPediatria["ninas-PxL-0a2-45a110"] = obj;
                 })

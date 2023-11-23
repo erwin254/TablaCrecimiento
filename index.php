@@ -40,7 +40,10 @@
         </select>
       </div>
       <div class="input-group mb-3">
-        <input type="text" id="IMC" name="IMC" placeholder="IMC" class="form-control">
+        <input type="number" id="imc" name="imc" placeholder="imc" class="form-control">
+      </div>
+      <div class="input-group mb-3">
+        <input type="number" id="pdc" name="pdc" placeholder="pdc" class="form-control">
       </div>
       <div class="input-group mb-3">
         <buttom id="enviar_datos" class="btn btn-primary">Calcular</buttom>
